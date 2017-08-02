@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { firebaseApp } from '../firebase';
 
 class SignUp extends Component {
@@ -14,7 +15,6 @@ class SignUp extends Component {
   }
 
   signUp() {
-    console.log('this.state', this.state);
     const { email, password } = this.state;
     firebaseApp.auth().createUserWithEmailAndPassword(email, password)
       .catch(error => {
@@ -25,7 +25,7 @@ class SignUp extends Component {
   render() {
     return (
       <div className="form-inline signup">
-        <h2>SignUp</h2>
+        <h2>Create Account</h2>
         <div className="form-group">
           <input
             className="form-control"
@@ -44,10 +44,11 @@ class SignUp extends Component {
             type="button"
             onClick={() => this.signUp()}
           >
-            Sign Up
+            Create
           </button>
         </div>
         <div>{this.state.error.message}</div>
+        <div><Link to={'signin'}>Already have an account?</Link></div>
       </div>
     )
   }
